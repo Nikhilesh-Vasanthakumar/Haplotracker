@@ -16,7 +16,7 @@ title_text = "Haplogroup Tracker"
 st.title(title_text)
 col1,col2=st.columns(2)
 with col1:
-    image=Image.open('LU.png')
+    image=Image.open('Data/LU.png')
     st.image(image,width=150)
 def common_code(mtgeo):
     try:
