@@ -44,7 +44,7 @@ from PIL import Image
 #Reading the data
 data=pd.read_excel("Data/Eurasian.xlsx")
 #Creating a title for the app
-title_text = "Haplogroup Tracker"
+title_text = "Haplo Tracker"
 st.title(title_text)
 #Creating a dataframe with the required columns and renaming the columns
 col1,col2=st.columns(2)
