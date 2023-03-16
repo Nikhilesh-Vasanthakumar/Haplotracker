@@ -53,6 +53,7 @@ hide_streamlit_style = """
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+st.markdown('<link rel="stylesheet" type="text/css" href="Data/style.css">', unsafe_allow_html=True)
 #Reading the data
 data=pd.read_excel("Data/Eurasian.xlsx")
 #Creating a title for the app
