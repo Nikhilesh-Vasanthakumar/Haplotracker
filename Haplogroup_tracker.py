@@ -71,13 +71,13 @@ def common_code(mtgeo):
         if not option:#if no haplogroup is selected
             st.error("Please select atleast one haplogroup")
         else:  #    if haplogroup is selected
-            
             mtgeo["Date"]=mtgeo["Date"]+70 #adding 70 years to the date column to find age from 2020
             mtgeo['Lat'].astype(float) #converting the latitude column to float
             mtgeo['Long'].astype(float) #converting the longitude column to float
             select=mtgeo[mtgeo["mtdna"].isin(option)]      #selecting the haplogroups selected in the sidebar
             select["hover"] = select["Country"].str.cat('\t' + select["Date"].astype(str) + ' years ago') #creating a hover column
             map_type=st.selectbox("Select map type",options=["USGS","Natural Earth"]) #selecting the map type
+            st.spinner("Mapping in progress")
             if map_type=="Natural Earth":   #if natural earth is selected
                     fig1 = px.scatter_geo(select, lat = 'Lat', lon = 'Long',color='mtdna',hover_name="hover",projection='natural earth',
                                           color_discrete_sequence=px.colors.qualitative.Set1)
@@ -201,7 +201,6 @@ def Onlyfemale_mtdna():        #Creating various functions to plot the data base
     mtgeo=mtgeo.rename(columns={'Lat.':'Lat','Long.':'Long','mtDNA haplogroup if ≥2 or published':'mtdna','Date mean in BP in years before 1950 CE [OxCal mu for a direct radiocarbon date, and average of range for a contextual date]':'Date'})
     mtgeo=mtgeo.drop(mtdata[mtgeo.Lat==".."].index) #dropping the rows with missing values
     
-    st.spinner("Mapping in progress") #printing the message to the user
     common_code(mtgeo)#calling the common code function to plot the data
 
 def Onlymale_mtdna():
@@ -209,7 +208,6 @@ def Onlymale_mtdna():
     mtgeo=mtdata[["Lat.","Long.","mtDNA haplogroup if ≥2 or published","Date mean in BP in years before 1950 CE [OxCal mu for a direct radiocarbon date, and average of range for a contextual date]","Country"]]
     mtgeo=mtgeo.rename(columns={'Lat.':'Lat','Long.':'Long','mtDNA haplogroup if ≥2 or published':'mtdna','Date mean in BP in years before 1950 CE [OxCal mu for a direct radiocarbon date, and average of range for a contextual date]':'Date'})
     mtgeo=mtgeo.drop(mtdata[mtgeo.Lat==".."].index)
-    st.spinner("Mapping in progress")
     common_code(mtgeo)
     
 def Combined_mtdna():
@@ -217,7 +215,6 @@ def Combined_mtdna():
     mtgeo=mtdata[["Lat.","Long.","mtDNA haplogroup if ≥2 or published","Date mean in BP in years before 1950 CE [OxCal mu for a direct radiocarbon date, and average of range for a contextual date]","Country"]]
     mtgeo=mtgeo.rename(columns={'Lat.':'Lat','Long.':'Long','mtDNA haplogroup if ≥2 or published':'mtdna','Date mean in BP in years before 1950 CE [OxCal mu for a direct radiocarbon date, and average of range for a contextual date]':'Date'})
     mtgeo=mtgeo.drop(mtdata[mtgeo.Lat==".."].index)
-    st.spinner("Mapping in progress")
     common_code(mtgeo)
     
 def Onlymale_ychrom():
@@ -225,7 +222,6 @@ def Onlymale_ychrom():
     mtgeo=mtdata[["Lat.","Long.","Y haplogroup  in ISOGG v15.73 notation (automatically called)","Date mean in BP in years before 1950 CE [OxCal mu for a direct radiocarbon date, and average of range for a contextual date]","Country"]]
     mtgeo=mtgeo.rename(columns={'Lat.':'Lat','Long.':'Long','Y haplogroup  in ISOGG v15.73 notation (automatically called)':'mtdna','Date mean in BP in years before 1950 CE [OxCal mu for a direct radiocarbon date, and average of range for a contextual date]':'Date'})
     mtgeo=mtgeo.drop(mtdata[mtgeo.Lat==".."].index)
-    st.spinner("Mapping in progress")
     common_code(mtgeo)
 with col2:
     haplogroup_select=st.selectbox("Select a mode",options=["mtdna","mtdna-male","mtdna-female","y-chrom"]) #selecting the mode of selection
