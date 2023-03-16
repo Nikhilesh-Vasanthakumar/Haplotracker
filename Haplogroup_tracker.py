@@ -77,7 +77,6 @@ def common_code(mtgeo):
             select=mtgeo[mtgeo["mtdna"].isin(option)]      #selecting the haplogroups selected in the sidebar
             select["hover"] = select["Country"].str.cat('\t' + select["Date"].astype(str) + ' years ago') #creating a hover column
             map_type=st.selectbox("Select map type",options=["USGS","Natural Earth"]) #selecting the map type
-            st.spinner("Mapping in progress")
             if map_type=="Natural Earth":   #if natural earth is selected
                     fig1 = px.scatter_geo(select, lat = 'Lat', lon = 'Long',color='mtdna',hover_name="hover",projection='natural earth',
                                           color_discrete_sequence=px.colors.qualitative.Set1)
