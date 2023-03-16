@@ -8,6 +8,7 @@ Description: This script is used to track the movement of haplogroups over time 
 The script takes the data from the excel file and plots the haplogroups on the map based on the user input. 
 The user can select the haplogroups to be plotted on the map and the map type. 
 The user can also select the haplogroup to animate and the script will animate the haplogroup movement over time.
+
 Website Link: https://nikhilesh-vasanthakumar-haplotracker-haplogroup-tracker-rjagwu.streamlit.app/
 
 User Defined Functions:
@@ -52,6 +53,7 @@ with col1:
     st.image(image,width=150)
 #Creating the main function for the app    
 def common_code(mtgeo):     
+    select = pd.DataFrame()
     try:
         #creating a sidebar to select the haplogroups
         option=st.multiselect(label="Select the haplogroup",options=mtgeo["mtdna"].unique())
