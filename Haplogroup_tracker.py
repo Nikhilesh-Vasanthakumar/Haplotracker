@@ -181,7 +181,7 @@ def common_code(mtgeo):
                 ]
             )
             st.plotly_chart(fig3)
-        except Exception as e:  #exception handling
+    except Exception as e:  #exception handling
             st.error("An error occurred: {}".format(e)) #printing the error message
 def Onlyfemale_mtdna():        #Creating various functions to plot the data based on the user mode of selection
     mtdata=data.loc[data["Sex"]=="F"]
