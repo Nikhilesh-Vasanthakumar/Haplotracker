@@ -75,21 +75,17 @@ def common_code(mtgeo):
             mtgeo["Date"]=mtgeo["Date"]+70 #adding 70 years to the date column to find age from 2020
             mtgeo['Lat'].astype(float) #converting the latitude column to float
             mtgeo['Long'].astype(float) #converting the longitude column to float
-            select=pd.DataFrame() #creating an empty dataframe
-            if select.empty: #if the dataframe is empty
-                pass
-            else:
-                select=mtgeo[mtgeo["mtdna"].isin(option)]      #selecting the haplogroups selected in the sidebar
-                select["hover"] = select["Country"].str.cat('\t' + select["Date"].astype(str) + ' years ago') #creating a hover column
-                map_type=st.selectbox("Select map type",options=["USGS","Natural Earth"]) #selecting the map type
-                if map_type=="Natural Earth":   #if natural earth is selected
+            select=mtgeo[mtgeo["mtdna"].isin(option)]      #selecting the haplogroups selected in the sidebar
+            select["hover"] = select["Country"].str.cat('\t' + select["Date"].astype(str) + ' years ago') #creating a hover column
+            map_type=st.selectbox("Select map type",options=["USGS","Natural Earth"]) #selecting the map type
+            if map_type=="Natural Earth":   #if natural earth is selected
                     fig1 = px.scatter_geo(select, lat = 'Lat', lon = 'Long',color='mtdna',hover_name="hover",projection='natural earth',
                                           color_discrete_sequence=px.colors.qualitative.Set1)
                     fig1.update_geos(showland=True,landcolor="LightGreen",showocean=True, oceancolor="LightBlue",
                                      showrivers=True, rivercolor="Blue",
                                      projection_type="natural earth",fitbounds="locations")
                     st.plotly_chart(fig1)
-                else:       #if USGS is selected
+            else:       #if USGS is selected
                     fig1 = px.scatter_mapbox(select, lat = 'Lat', lon = 'Long',color='mtdna',hover_name="hover",
                                           color_discrete_sequence=px.colors.qualitative.Set1)   #creating a scatter plot on the map based on the haplogroups selected
                     fig1.update_traces(marker=dict(size=10, symbol="circle"))#updating the size of the markers and the shape of the markers
