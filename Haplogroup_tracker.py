@@ -76,7 +76,7 @@ def common_code(mtgeo):
             mtgeo['Lat'].astype(float) #converting the latitude column to float
             mtgeo['Long'].astype(float) #converting the longitude column to float
             select=pd.DataFrame() #creating an empty dataframe
-            if not select:
+            if select.empty: #if the dataframe is empty
                 pass
             else:
                 select=mtgeo[mtgeo["mtdna"].isin(option)]      #selecting the haplogroups selected in the sidebar
