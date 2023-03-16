@@ -45,7 +45,7 @@ from PIL import Image
 
 #Adding a browser title
 st.set_page_config(page_title="Haplo Tracker",page_icon=":dna:",layout="wide",initial_sidebar_state="expanded")
-st.markdown('<link rel="stylesheet" type="text/css" href="Data/style.css">', unsafe_allow_html=True)
+st.markdown('<link rel="stylesheet" type="text/css" href="assests/style.css">', unsafe_allow_html=True)
 #Hiding the main menu and footer
 hide_streamlit_style = """
             <style>
@@ -62,7 +62,7 @@ st.title(title_text)
 #Creating a dataframe with the required columns and renaming the columns
 col1,col2=st.columns(2)
 with col1:
-    image=Image.open('Data/LU.png')
+    image=Image.open('assests/LU.png')
     st.image(image,width=150)
 #Creating the main function for the app    
 def common_code(mtgeo):     

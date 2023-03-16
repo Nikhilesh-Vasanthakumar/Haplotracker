@@ -1,0 +1,50 @@
+/* Setting background color for the entire page */
+body {
+  background-color: #f7f7f7;
+}
+
+/* Setting font style and color for the entire page */
+body, select, option {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333333;
+}
+
+/* Styling the sidebar */
+.sidebar .sidebar-content {
+  background-color: #ffffff;
+  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.14), 0 3px 14px 0 rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling the title */
+h1, h2, h3, h4, h5, h6 {
+  font-family: Georgia, serif;
+  color: #333333;
+}
+
+/* Styling the select boxes */
+select {
+  padding: 6px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Styling the multiselect boxes */
+div[role="listbox"] {
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 6px 12px;
+}
+
+/* Styling the multiselect options */
+div[role="option"] {
+  padding: 6px 12px;
+}
+
+/* Styling the map */
+.mapboxgl-map {
+  border-radius: 4px;
+  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.14), 0 3px 14px 0 rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+}
