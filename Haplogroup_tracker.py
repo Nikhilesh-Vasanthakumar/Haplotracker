@@ -75,10 +75,10 @@ def common_code(mtgeo):
             mtgeo["Date"]=mtgeo["Date"]+70 #adding 70 years to the date column to find age from 2020
             mtgeo['Lat'].astype(float) #converting the latitude column to float
             mtgeo['Long'].astype(float) #converting the longitude column to float
+            select=pd.DataFrame() #creating an empty dataframe
             if not select:
                 pass
             else:
-                select=pd.DataFrame()
                 select=mtgeo[mtgeo["mtdna"].isin(option)]      #selecting the haplogroups selected in the sidebar
                 select["hover"] = select["Country"].str.cat('\t' + select["Date"].astype(str) + ' years ago') #creating a hover column
                 map_type=st.selectbox("Select map type",options=["USGS","Natural Earth"]) #selecting the map type
