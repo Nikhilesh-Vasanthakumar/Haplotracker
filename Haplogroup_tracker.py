@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Tue Mar  7 10:29:19 2023
@@ -41,6 +42,9 @@ import plotly.express as px
 import streamlit as st
 import plotly.graph_objects as go
 from PIL import Image
+
+#Adding a browser title
+st.set_page_config(page_title="Haplo Tracker",page_icon=":dna:",layout="wide",initial_sidebar_state="expanded")
 #Reading the data
 data=pd.read_excel("Data/Eurasian.xlsx")
 #Creating a title for the app
