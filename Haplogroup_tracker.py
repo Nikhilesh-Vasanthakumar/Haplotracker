@@ -37,7 +37,6 @@ User Guide:
     """
 #Create a streamlit app to track the movement of haplogroups over time
 #Importing the required libraries
-from tkinter import font
 import pandas as pd
 import plotly.express as px
 import streamlit as st
