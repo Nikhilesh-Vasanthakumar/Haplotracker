@@ -181,12 +181,12 @@ def common_code(mtgeo):
                 label="Play",
                 method="animate",
                 args=[None],
-                font=dict(
-                    color="#ffffff"  # set the text color of the button to white
-                ),
                 bgcolor="#FFA500"  # set the background color of the button to orange
             )
-        ]
+        ],
+        font=dict(
+            color="#ffffff"  # set the text color of the button to white
+        )
     )
 ]
 
