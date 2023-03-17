@@ -174,21 +174,22 @@ def common_code(mtgeo):
                         zoom=1
                     ),
                     updatemenus=[
-                            dict(
-                                type="buttons",
-                                buttons=[
-                                    dict(
-                                        label="Play",
-                                        method="animate",
-                                        args=[None],
-                                        style=dict(
-                                            backgroundColor="#FFA500",  # set the background color of the button to orange
-                                            color="#ffffff"  # set the text color of the button to white
-                                        )
-                                    )
-                                ]
-                            )
-                        ]
+    dict(
+        type="buttons",
+        buttons=[
+            dict(
+                label="Play",
+                method="animate",
+                args=[None],
+                font=dict(
+                    color="#ffffff"  # set the text color of the button to white
+                ),
+                bgcolor="#FFA500"  # set the background color of the button to orange
+            )
+        ]
+    )
+]
+
                 ),
                 frames=[ #The frames are used to animate the figure initializing the frames.
                     go.Frame(
