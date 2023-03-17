@@ -54,9 +54,9 @@ def load_css():
     css_path = streamlit_static_path / "css"
     if not css_path.is_dir():
         css_path.mkdir()
-    css_file = css_path / "styles.css"
+    css_file = css_path / "style.css"
     if not css_file.exists():
-        css_file.write_text(open("assets/styles.css", "r").read())
+        css_file.write_text(open("assets/style.css", "r").read())
     st.markdown(f'<link rel="stylesheet" href="{os.path.join("/", str(css_file))}">', unsafe_allow_html=True)
 
 load_css()
