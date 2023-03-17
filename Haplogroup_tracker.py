@@ -99,6 +99,91 @@ def common_code(mtgeo):
                                      showrivers=True, rivercolor="Blue",
                                      projection_type="natural earth",fitbounds="locations")
                     st.plotly_chart(fig1)
+                    fig3 = go.Figure(
+                        data=[
+                            go.Scattermapbox(
+                                lat=animate_data["Lat"],
+                                lon=animate_data["Long"],
+                                mode="lines",
+                                line=dict(width=2, color="blue"),
+                                name="Haplogroup Movement",
+                                hovertext=animate_data["hover"]
+                            ),
+                            go.Scattermapbox(
+                                lat=animate_data["Lat"],
+                                lon=animate_data["Long"],
+                                mode="lines",
+                                line=dict(width=2, color="blue")
+                            ),
+                            go.Scattermapbox(
+                                lat=animate_data["Lat"],
+                                lon=animate_data["Long"],
+                                mode="markers",
+                                marker=dict(
+                                    size=6,
+                                    color="red"
+                                ),
+                                name="Haplogroup locations",
+                                hovertext=animate_data["hover"]
+                            )
+                        ],
+                        layout=go.Layout(
+                            title_text="Movement of mtHaplogroups over history",
+                            mapbox_style="carto-positron", # Change the mapbox_style to "carto-positron"
+                            mapbox=dict(
+                                accesstoken="pk.eyJ1IjoibmlraGlsZXNoMjMiLCJhIjoiY2xmMmJucGx6MDFxaTN5bnRpYW12cWxxeCJ9.KeccdtSz6Hc9F_vPrYoiNg",
+                                bearing=0,
+                                center=dict(
+                                    lat=select["Lat"].mean(),
+                                    lon=select["Long"].mean()),
+                                pitch=0,
+                                zoom=1
+                            ),
+                            updatemenus=[
+                                dict(
+                                    type="buttons",
+                                    buttons=[dict(label="Play", method="animate",args=[None])]
+                                )
+                            ]
+                        ),
+                        frames=[
+                            go.Frame(
+                                data=[
+                                    go.Scattermapbox(
+                                        lat=[list(animate_data["Lat"])[k]],
+                                        lon=[list(animate_data["Long"])[k]],
+                                        mode="markers",
+                                        marker=dict(color="red", size=10),
+                                        text=list(animate_data["mtdna"])[k]
+                                    ),
+
+                                    go.Scattermapbox(
+                                        lat=list(animate_data["Lat"])[:k+1],
+                                        lon=list(animate_data["Long"])[:k+1],
+                                        mode="lines",
+                                        line=dict(width=2, color="orange"),
+                                        name="Movement"
+                                    )
+                                ]
+                            )
+                            for k in range(1, len(animate_data["mtdna"]))
+                        ]
+                    )
+
+                    # Change the map style using update_layout
+                    fig3.update_layout(
+                        mapbox=dict(
+                            style="carto-positron",
+                            center=dict(
+                                lat=select["Lat"].mean(),
+                                lon=select["Long"].mean()
+                            ),
+                            zoom=1
+                        )
+                    )
+
+                    st.plotly_chart(fig3)
+
             else:       #if USGS is selected
                     fig1 = px.scatter_mapbox(select, lat = 'Lat', lon = 'Long',color='mtdna',hover_name="hover",
                                           color_discrete_sequence=px.colors.qualitative.Set1)   #creating a scatter plot on the map based on the haplogroups selected
@@ -119,91 +204,91 @@ def common_code(mtgeo):
                             }
                         ])
                     st.plotly_chart(fig1)   #plotting the map
-            select=select.sort_values(by="Date",ascending=False)  #sorting the data based on the date in descending order
-            animate_select=st.selectbox("Select haplogroup to animate",options=option)  #Using the user input to select the haplogroup to animate
-            animate_data = select[select["mtdna"].isin([animate_select])]       #selecting the haplogroup to animate from the data
-            
-            fig3 = go.Figure( #Initializing the figure
-                data=[  #adding the data to the figure
-                    go.Scattermapbox( #adding the scattermapbox to the figure
-                        lat=animate_data["Lat"], #adding the latitude column to the scattermapbox
-                        lon=animate_data["Long"],      #adding the longitude column to the scattermapbox
-                        mode="lines",#adding the mode to the scattermapbox
-                        line=dict(width=2, color="blue"),#adding the line properties to the scattermapbox
-                        name="Haplogroup Movement",#adding the name to the scattermapbox
-                        hovertext=animate_data["hover"]#adding the hover text to the scattermapbox
-                    ),
-                    go.Scattermapbox(#adding a second scattermapbox to the figure
-                        lat=animate_data["Lat"],    #adding the latitude column to the scattermapbox
-                        lon=animate_data["Long"],   #adding the longitude column to the scattermapbox
-                        mode="lines",   #adding the mode to the scattermapbox
-                        line=dict(width=2, color="blue")        #adding the line properties to the scattermapbox
-                    ),
-                    go.Scattermapbox(   #adding a third scattermapbox to the figure
-                        lat=animate_data["Lat"],        #adding the latitude column to the scattermapbox
-                        lon=animate_data["Long"],       #adding the longitude column to the scattermapbox
-                        mode="markers",     #adding the mode to the scattermapbox
-                        marker=dict(            #adding the marker properties to the scattermapbox
-                            size=6, #adding the size of the marker
-                            color="red"     #adding the color of the marker
-                        ),
-                        name="Haplogroup locations",   #adding the name to the scattermapbox
-                        hovertext=animate_data["hover"]    #adding the hover text to the scattermapbox
-                    )
-                ],
-                layout=go.Layout(  #adding the layout to the figure
-                    title_text="Movement of mtHaplogroups over history", #adding the title to the figure
-                    mapbox_style="white-bg",   #adding the mapbox style to the figure
-                    mapbox_layers=[ #adding the mapbox layers to the figure
-                        {
-                            "below": 'traces',
-                            "sourcetype": "raster",
-                            "sourceattribution": "United States Geological Survey",
-                            "source": [
-                                "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"
-                            ]
-                        }
-                    ],
-                    mapbox=dict( 
-                        accesstoken="pk.eyJ1IjoibmlraGlsZXNoMjMiLCJhIjoiY2xmMmJucGx6MDFxaTN5bnRpYW12cWxxeCJ9.KeccdtSz6Hc9F_vPrYoiNg",
-                        bearing=0,
-                        center=dict(
-                            lat=select["Lat"].mean(),
-                            lon=select["Long"].mean()),
-                        pitch=0,
-                        zoom=1
-                    ),
-                    updatemenus=[ #adding the updatemenus to the figure which will be used to animate the figure
-                        dict(
-                            type="buttons",
-                            buttons=[dict(label="Play",method="animate",args=[None])] 
-                        )
-                    ]
-                ),
-                frames=[ #The frames are used to animate the figure initializing the frames.
-                    go.Frame(
-                        data=[
-                            go.Scattermapbox( #adding the scattermapbox "markers" to the frame to animate
-                                lat=[list(animate_data["Lat"])[k]],
-                                lon=[list(animate_data["Long"])[k]],
-                                mode="markers",
-                                marker=dict(color="red", size=10),
-                                text=list(animate_data["mtdna"])[k]
+                    select=select.sort_values(by="Date",ascending=False)  #sorting the data based on the date in descending order
+                    animate_select=st.selectbox("Select haplogroup to animate",options=option)  #Using the user input to select the haplogroup to animate
+                    animate_data = select[select["mtdna"].isin([animate_select])]       #selecting the haplogroup to animate from the data
+                    
+                    fig3 = go.Figure( #Initializing the figure
+                        data=[  #adding the data to the figure
+                            go.Scattermapbox( #adding the scattermapbox to the figure
+                                lat=animate_data["Lat"], #adding the latitude column to the scattermapbox
+                                lon=animate_data["Long"],      #adding the longitude column to the scattermapbox
+                                mode="lines",#adding the mode to the scattermapbox
+                                line=dict(width=2, color="blue"),#adding the line properties to the scattermapbox
+                                name="Haplogroup Movement",#adding the name to the scattermapbox
+                                hovertext=animate_data["hover"]#adding the hover text to the scattermapbox
                             ),
-                            
-                            go.Scattermapbox( #adding the scattermapbox "lines" to the frame to animate
-                                lat=list(animate_data["Lat"])[:k+1], #adding the latitude column to the scattermapbox
-                                lon=list(animate_data["Long"])[:k+1], #adding the longitude column to the scattermapbox
-                                mode="lines",
-                                line=dict(width=2, color="orange"),
-                                name="Movement"
+                            go.Scattermapbox(#adding a second scattermapbox to the figure
+                                lat=animate_data["Lat"],    #adding the latitude column to the scattermapbox
+                                lon=animate_data["Long"],   #adding the longitude column to the scattermapbox
+                                mode="lines",   #adding the mode to the scattermapbox
+                                line=dict(width=2, color="blue")        #adding the line properties to the scattermapbox
+                            ),
+                            go.Scattermapbox(   #adding a third scattermapbox to the figure
+                                lat=animate_data["Lat"],        #adding the latitude column to the scattermapbox
+                                lon=animate_data["Long"],       #adding the longitude column to the scattermapbox
+                                mode="markers",     #adding the mode to the scattermapbox
+                                marker=dict(            #adding the marker properties to the scattermapbox
+                                    size=6, #adding the size of the marker
+                                    color="red"     #adding the color of the marker
+                                ),
+                                name="Haplogroup locations",   #adding the name to the scattermapbox
+                                hovertext=animate_data["hover"]    #adding the hover text to the scattermapbox
                             )
+                        ],
+                        layout=go.Layout(  #adding the layout to the figure
+                            title_text="Movement of mtHaplogroups over history", #adding the title to the figure
+                            mapbox_style="white-bg",   #adding the mapbox style to the figure
+                            mapbox_layers=[ #adding the mapbox layers to the figure
+                                {
+                                    "below": 'traces',
+                                    "sourcetype": "raster",
+                                    "sourceattribution": "United States Geological Survey",
+                                    "source": [
+                                        "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"
+                                    ]
+                                }
+                            ],
+                            mapbox=dict( 
+                                accesstoken="pk.eyJ1IjoibmlraGlsZXNoMjMiLCJhIjoiY2xmMmJucGx6MDFxaTN5bnRpYW12cWxxeCJ9.KeccdtSz6Hc9F_vPrYoiNg",
+                                bearing=0,
+                                center=dict(
+                                    lat=select["Lat"].mean(),
+                                    lon=select["Long"].mean()),
+                                pitch=0,
+                                zoom=1
+                            ),
+                            updatemenus=[ #adding the updatemenus to the figure which will be used to animate the figure
+                                dict(
+                                    type="buttons",
+                                    buttons=[dict(label="Play",method="animate",args=[None])] 
+                                )
+                            ]
+                        ),
+                        frames=[ #The frames are used to animate the figure initializing the frames.
+                            go.Frame(
+                                data=[
+                                    go.Scattermapbox( #adding the scattermapbox "markers" to the frame to animate
+                                        lat=[list(animate_data["Lat"])[k]],
+                                        lon=[list(animate_data["Long"])[k]],
+                                        mode="markers",
+                                        marker=dict(color="red", size=10),
+                                        text=list(animate_data["mtdna"])[k]
+                                    ),
+                                    
+                                    go.Scattermapbox( #adding the scattermapbox "lines" to the frame to animate
+                                        lat=list(animate_data["Lat"])[:k+1], #adding the latitude column to the scattermapbox
+                                        lon=list(animate_data["Long"])[:k+1], #adding the longitude column to the scattermapbox
+                                        mode="lines",
+                                        line=dict(width=2, color="orange"),
+                                        name="Movement"
+                                    )
+                                ]
+                            )
+                            for k in range(1, len(animate_data["mtdna"]))   #for loop to iterate through the data
                         ]
                     )
-                    for k in range(1, len(animate_data["mtdna"]))   #for loop to iterate through the data
-                ]
-            )
-            st.plotly_chart(fig3)
+                    st.plotly_chart(fig3)   #plotting the figure
             st.success("The maps have been plotted successfully",icon="✅") #printing the success message
     except Exception as e:  #exception handling
             st.error("An error occurred: {}".format(e)) #printing the error message
