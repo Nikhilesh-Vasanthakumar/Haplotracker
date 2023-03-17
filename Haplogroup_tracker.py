@@ -42,10 +42,24 @@ import plotly.express as px
 import streamlit as st
 import plotly.graph_objects as go
 from PIL import Image
-
+import os
+from pathlib import Path
 #Adding a browser title
 st.set_page_config(page_title="Haplo Tracker",page_icon=":dna:",layout="wide",initial_sidebar_state="expanded")
-st.markdown('<link rel="stylesheet" type="text/css" href="assests/style.css">', unsafe_allow_html=True)
+def load_css():
+    """
+    Function to load custom CSS styles.
+    """
+    streamlit_static_path = Path(st.__path__[0]) / 'static'
+    css_path = streamlit_static_path / "css"
+    if not css_path.is_dir():
+        css_path.mkdir()
+    css_file = css_path / "styles.css"
+    if not css_file.exists():
+        css_file.write_text(open("assets/styles.css", "r").read())
+    st.markdown(f'<link rel="stylesheet" href="{os.path.join("/", str(css_file))}">', unsafe_allow_html=True)
+
+load_css()
 #Hiding the main menu and footer
 hide_streamlit_style = """
             <style>
