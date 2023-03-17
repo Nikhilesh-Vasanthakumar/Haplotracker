@@ -99,6 +99,9 @@ def common_code(mtgeo):
                                      showrivers=True, rivercolor="Blue",
                                      projection_type="natural earth",fitbounds="locations")
                     st.plotly_chart(fig1)
+                    select=select.sort_values(by="Date",ascending=False)  #sorting the data based on the date in descending order
+                    animate_select=st.selectbox("Select haplogroup to animate",options=option)  #Using the user input to select the haplogroup to animate
+                    animate_data = select[select["mtdna"].isin([animate_select])]
                     fig3 = go.Figure(
                         data=[
                             go.Scattermapbox(
