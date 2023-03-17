@@ -45,7 +45,7 @@ from PIL import Image
 import os
 from pathlib import Path
 #Adding a browser title
-st.set_page_config(page_title="Haplo Tracker",page_icon=":dna:",layout="wide",initial_sidebar_state="expanded")
+st.set_page_config(page_title="HaploTracker",page_icon=":dna:",layout="wide",initial_sidebar_state="expanded")
 def load_css():
     """
     Function to load custom CSS styles.
