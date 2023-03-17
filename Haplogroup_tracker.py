@@ -56,7 +56,7 @@ def load_css():
         css_path.mkdir()
     css_file = css_path / "style.css"
     if not css_file.exists():
-        css_file.write_text(open("assets/style.css", "r").read())
+        css_file.write_text(open("assests/style.css", "r").read())
     st.markdown(f'<link rel="stylesheet" href="{os.path.join("/", str(css_file))}">', unsafe_allow_html=True)
 
 load_css()
