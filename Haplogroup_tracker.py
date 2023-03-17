@@ -176,7 +176,7 @@ def common_code(mtgeo):
                     updatemenus=[ #adding the updatemenus to the figure which will be used to animate the figure
                         dict(
                             type="buttons",
-                            buttons=[dict(label="Play",bgcolor="black",method="animate",args=[None])]
+                            buttons=[dict(label="Play",color="black",method="animate",args=[None])]
                         )
                     ]
                 ),
