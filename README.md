@@ -67,6 +67,7 @@ The map with all the selected Haplogroups which can be clicked to toggle view.
 ![newplot(4)](https://user-images.githubusercontent.com/112621638/226195334-82b4bd64-eb14-4a88-9f55-02e656023d55.png)
 
 The trace map for the selected haplogroup.
+![image](https://user-images.githubusercontent.com/112621638/226195642-269ac1a8-6e27-4747-860b-a75e450feb97.png)
 
 ![newplot(5)](https://user-images.githubusercontent.com/112621638/226195370-66ebef05-ff79-4745-8f53-28f59b1b9385.png)
 
