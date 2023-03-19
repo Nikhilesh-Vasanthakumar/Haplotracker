@@ -71,6 +71,10 @@ The trace map for the selected haplogroup.
 
 ![newplot(5)](https://user-images.githubusercontent.com/112621638/226195370-66ebef05-ff79-4745-8f53-28f59b1b9385.png)
 
+The animation is played when the user presses the play button on the top left corner of the map.
+
+![animate](https://user-images.githubusercontent.com/112621638/226197248-223884bc-6bc5-4606-b56a-3ce224c3dee4.mp4)
+
 ## Features
 
 - Downloadable plots
