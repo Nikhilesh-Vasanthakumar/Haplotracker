@@ -4,7 +4,7 @@
 Haplogroups are groups of individuals who share a common ancestor based on genetic markers. The study of haplogroups is useful for understanding population migration patterns, genetic diversity, and evolution. Haplogroup Tracker is a project aimed at providing a user-friendly web-based platform for individuals to track and analyze their haplogroup.
 
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/y/Nikhilesh-Vasanthakumar/Haplotracker)![Website](https://img.shields.io/website?down_color=red&down_message=Offline&up_color=green&up_message=online&url=https%3A%2F%2Fnikhilesh-vasanthakumar-haplotracker-haplogroup-tracker-rjagwu.streamlit.app%2F)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/Nikhilesh-Vasanthakumar/Haplotracker)![Website](https://img.shields.io/website?down_color=greeen&down_message=online&up_color=green&up_message=online&url=https%3A%2F%2Fnikhilesh-vasanthakumar-haplotracker-haplogroup-tracker-wqf8g7.streamlit.app%2F)
 
 
 ## Usage
