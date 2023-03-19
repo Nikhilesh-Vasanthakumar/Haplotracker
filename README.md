@@ -63,6 +63,11 @@ The user then has to select a map type the ones available are
 The user also needs to select the haplogroup which they would like to animate.The first option from the user is chosen as the default.
 
 ## Example Output Maps
+The map with all the selected Haplogroups which can be clicked to toggle view.
+![newplot(4)](https://user-images.githubusercontent.com/112621638/226195334-82b4bd64-eb14-4a88-9f55-02e656023d55.png)
+
+The trace map for the selected haplogroup.
+
 ![newplot(5)](https://user-images.githubusercontent.com/112621638/226195370-66ebef05-ff79-4745-8f53-28f59b1b9385.png)
 
 ## Features
