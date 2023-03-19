@@ -10,7 +10,7 @@ The script takes the data from the excel file and plots the haplogroups on the m
 The user can select the haplogroups to be plotted on the map and the map type. 
 The user can also select the haplogroup to animate and the script will animate the haplogroup movement over time.
 
-Website Link: https://nikhilesh-vasanthakumar-haplotracker-haplogroup-tracker-rjagwu.streamlit.app/
+Website Link:https://nikhilesh-vasanthakumar-haplotracker-haplogroup-tracker-wqf8g7.streamlit.app/
 
 User Defined Functions:
     common_code(mtgeo): This function is used to plot the haplogroups on the map based on the user input.
@@ -131,7 +131,7 @@ def common_code(mtgeo):
                             )
                         ],
                         layout=go.Layout(
-                            title_text="Movement of mtHaplogroups over history",
+                            title_text="Movement of selected Haplogroup over history",
                             mapbox_style="carto-positron", # Change the mapbox_style to "carto-positron"
                             mapbox=dict(
                                 accesstoken="pk.eyJ1IjoibmlraGlsZXNoMjMiLCJhIjoiY2xmMmJucGx6MDFxaTN5bnRpYW12cWxxeCJ9.KeccdtSz6Hc9F_vPrYoiNg",
@@ -326,15 +326,15 @@ def Onlymale_ychrom():
     mtgeo=mtgeo.drop(mtdata[mtgeo.Lat==".."].index)
     common_code(mtgeo)
 with col2:
-    haplogroup_select=st.selectbox("Select a mode",options=["mtdna","mtdna-male","mtdna-female","y-chrom"]) #selecting the mode of selection
+    haplogroup_select=st.selectbox("Select a mode",options=["MtDNA","MtDNA-Male","MtDNA-Female","Y-Chromosome"]) #selecting the mode of selection
 if not haplogroup_select:       #exception handling
     st.error("Please select one category")  #printing the error message
-elif haplogroup_select=="mtdna":    #if the user selects the mtdna mode
+elif haplogroup_select=="MtDNA":    #if the user selects the mtdna mode
     Combined_mtdna()    #calling the Combined_mtdna function
-elif haplogroup_select=="mtdna-male":   #if the user selects the mtdna-male mode
+elif haplogroup_select=="MtDNA-Male":   #if the user selects the mtdna-male mode
     Onlymale_mtdna() #calling the Onlymale_mtdna function
-elif haplogroup_select=="mtdna-female": #If the user selects the mtdna-female mode
+elif haplogroup_select=="MtDNA-Female": #If the user selects the mtdna-female mode
     Onlyfemale_mtdna() #calling the Onlyfemale_mtdna function
-elif haplogroup_select=="y-chrom": #If the user selects the y-chrom mode
+elif haplogroup_select=="Y-Chromosome": #If the user selects the y-chrom mode
     Onlymale_ychrom()   #calling the Onlymale_ychrom function
 
