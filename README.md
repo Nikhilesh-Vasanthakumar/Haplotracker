@@ -47,21 +47,24 @@ The user can then select the mode of the app
 - "MtDNA-Female"-Uses all the female mtdna in the data
 - "Y-chromosome"-Uses all the male y-chromosome in the data
 
-INSERT IMAGE HERE
+![image](https://user-images.githubusercontent.com/112621638/226195188-f6edb0b7-41a0-4f78-b9f2-58b2f91dd646.png)
 
 The user has to select the haplogroups that they want to visualize using the multiselect box.
 
-INSERT IMAGE HERE
+![image](https://user-images.githubusercontent.com/112621638/226195241-b03c875d-4aa5-4cba-82c3-cf115f0e55ab.png)
 
 The user then has to select a map type the ones available are
 - USGS- United States Geological Survey
 - Natural Earth- A clean looking map with major rivers.
 
-INSERT IMAGE HERE
+
+![image](https://user-images.githubusercontent.com/112621638/226195278-8441361b-1af0-4854-9ef5-0ce2f8cbedfe.png)
 
 The user also needs to select the haplogroup which they would like to animate.The first option from the user is chosen as the default.
 
-INSERT IMAGE HERE
+## Example Output Maps
+![newplot(5)](https://user-images.githubusercontent.com/112621638/226195370-66ebef05-ff79-4745-8f53-28f59b1b9385.png)
+
 ## Features
 
 - Downloadable plots
