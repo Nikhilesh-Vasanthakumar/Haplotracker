@@ -69,7 +69,7 @@ hide_streamlit_style = """
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 #Reading the data
-data=pd.read_excel("Data/Eurasian.xlsx")
+data=pd.read_excel("Data/Eurasian.xlsx") #Rename the file name to the file name of the data ifyou want to use your own data.
 #Creating a title for the app
 title_text = "Haplo Tracker"
 st.title(title_text)
