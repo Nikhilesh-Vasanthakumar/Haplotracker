@@ -11,41 +11,38 @@ Haplogroups are groups of individuals who share a common ancestor based on genet
 Haplotracker can be accessed through this
 [link](https://nikhilesh-vasanthakumar-haplotracker-haplogroup-tracker-wqf8g7.streamlit.app/)
 
-Haplotracker can also be used by downloading the Haplotracker.py file
-This requires the following packages.
+Haplotracker can also be run on your own computer.
 
 ### Installation for Manual run
 
-To run the app, you will need Python 3.x and the following libraries:
-
+You will need Python 3.11 or newer. Clone the repository from [here](https://github.com/Nikhilesh-Vasanthakumar/Haplotracker), then install the dependencies from the project folder:
 
 ```bash
-pip install pandas
-pip install plotly
-pip install streamlit
-pip install Pillow
+pip install -r requirements.txt
 ```
-Clone the repository from [here](https://github.com/Nikhilesh-Vasanthakumar/Haplotracker)
 
-You will have to rename the file name in the code line **72** when using your own files
+Then start the app:
+
+```bash
+streamlit run Haplogroup_tracker.py
+```
+
+To use your own data, change `DATA_FILE` near the top of `Haplogroup_tracker.py`. The file must have the same column names as `Data/Eurasian.xlsx`.
 
 ```python
-data=pd.read_excel("Data/Eurasian.xlsx") 
-```
-You can then run the the following code in anaconda prompt to run the app.
-
-```bash
-streamlit run haplotracker.py
+DATA_FILE = APP_DIR / "Data" / "Eurasian.xlsx"
 ```
 
 ## Input
-The app reads a data file Eurasian.xlsx located in the Data directory. The data file contains information about the location and migration patterns of various haplogroups.
+The app reads a data file Eurasian.xlsx located in the Data directory. It lists ancient individuals with where they were found, how old they are, their sex, and their mtDNA and Y-chromosome haplogroups.
+
+Ages are shown as years before today. Samples without coordinates, a date, or a haplogroup call (entries such as `..` or `n/a (<2x)`) are left out.
 
 The user can then select the mode of the app
 - "MtDNA"-Uses all the mtdna in the data
 - "MtDNA-Male"-Uses all the male mtdna in the data
 - "MtDNA-Female"-Uses all the female mtdna in the data
-- "Y-chromosome"-Uses all the male y-chromosome in the data
+- "Y-Chromosome"-Uses all the male y-chromosome in the data
 
 ![image](https://user-images.githubusercontent.com/112621638/226195188-f6edb0b7-41a0-4f78-b9f2-58b2f91dd646.png)
 
@@ -55,7 +52,7 @@ The user has to select the haplogroups that they want to visualize using the mul
 
 The user then has to select a map type the ones available are
 - USGS- United States Geological Survey
-- Natural Earth- A clean looking map with major rivers.
+- Natural Earth- A clean looking map with major rivers. The animation map uses a light street-map background in this mode.
 
 
 ![image](https://user-images.githubusercontent.com/112621638/226195278-8441361b-1af0-4854-9ef5-0ce2f8cbedfe.png)
@@ -71,7 +68,7 @@ The trace map for the selected haplogroup.
 
 ![newplot(5)](https://user-images.githubusercontent.com/112621638/226195370-66ebef05-ff79-4745-8f53-28f59b1b9385.png)
 
-The animation is played when the user presses the play button on the top left corner of the map.
+The animation is played when the user presses the play button on the top left corner of the map. It steps through the samples of the chosen haplogroup from oldest to youngest, so the line shows where it was found over time rather than an exact migration route. Haplogroups with only one sample have nothing to animate, and the app says so.
 
 ![animate](https://user-images.githubusercontent.com/112621638/226197248-223884bc-6bc5-4606-b56a-3ce224c3dee4.mp4)
 
